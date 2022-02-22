@@ -1,0 +1,43 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+pool:
+  vmImage: macOS-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run $(browser)
+  continueOnError: true
+  displayName: 'Install Dependencies and Execute Tests'
+
+- task: CopyFiles@2
+  displayName: 'Copy Reports folder to staging'
+  continueOnError: true
+  inputs:
+    SourceFolder: './reports'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Physical HTML Reports to download and view for detailed test executions'
+  continueOnError: true
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Reports'
+    publishLocation: 'Container'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'reports/xml/*.xml'
+    failTaskOnFailedTests: true
