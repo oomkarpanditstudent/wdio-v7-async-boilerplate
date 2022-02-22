@@ -1,6 +1,6 @@
-# Azure Dev Ops Headless CMS - Registration
+# Boiler Plate for WDIO v7 using Async with Azure Build Pipeline
 
-WebdriverIO-Cucumber-Javascript Framework developed for registration functionality on Azure Devops .
+WebdriverIO-Cucumber-Javascript Framework.
 
 # Features
 
@@ -15,7 +15,7 @@ WebdriverIO-Cucumber-Javascript Framework developed for registration functionali
 
   **Pre-requisite:** - Node.js and Npm (for development v14.5.0 was used)
   
-  Clone or Download the repo from : https://royalmailgroup@dev.azure.com/royalmailgroup/RMG.EBIZ/_git/RMG.EBIZ.AUTOMATION
+  Clone or Download the repo from GitHub: https://github.com/oomkarpanditstudent/wdio-v7-async-boilerplate
   
 **Install dependencies:**
 
@@ -26,14 +26,14 @@ WebdriverIO-Cucumber-Javascript Framework developed for registration functionali
   
   **Run Tests:**
   
-**npm run local.chrome**
+**npm run chrome**
   
   For Local Browser - Chrome
-    By default Chrome v97 is supported, in case you have different version please update this setting in package.json to required version of chromedriver "chromedriver": "^97.0.0" and do npm install once again)
+    By default Chrome v98 is supported, in case you have different version please update this setting in package.json to required version of chromedriver "chromedriver": "^98.0.0" and do npm install once again)
   
   **Targer Specific Tests:** Above command will execute all the feature files present in the folder, to target a specific feature file, use 
   
-  **npm run local.chrome -- --spec login.positive.feature**
+  **npm run chrome -- --spec login.positive.feature**
 
   Other ways to execute tests i.e. on Docker Selenium Grid of Cloud is listed below
 
